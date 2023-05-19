@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prmise async and await</title>
+</head>
+<body>
+    <center style="font-size: 30px;"><h1><mark>Closure</mark></h1></center>
+    <pre>
+        <h1>    Q1.  Write one example explaining how you can write a callback function.
+
+    Ans. function outer(cb)
+         {
+             console.log("Callback 1");
+         }
+         function outer1()
+         {
+             console.log("Callback 2");
+         }
+         outer(outer1())
+
+    Q2.  Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 
+         sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+         Explain callback hell.
+         Numbers
+         1
+         2
+         3
+         4
+         5
+         6
+         7
+
+    Ans.  setTimeout(() => {
+                console.log("1");
+                setTimeout(() => {
+                      console.log("2");
+                      setTimeout(() => {
+                          console.log("3");
+                          setTimeout(() => {
+                              console.log("4");
+                             setTimeout(() => {
+                                console.log("5");
+                               setTimeout(() => {
+                                   console.log("6");
+                                   setTimeout(() => {
+                                       console.log("7");
+                                   },7000)
+                               },6000)
+                           },5000)
+                         },4000)
+                    },3000)
+                  },2000)
+           },1000);
+    
+    Q3. Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 
+        sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+
+    Ans. const pro = (num)=>{
+         return new Promise(function(res,rej){
+            for(let i = 1 ; i < 8 ; i++)
+            {
+             setTimeout(() => {
+                 res()
+                 console.log(i);
+             },i*(i+1)/2*num);
+            }
+          })
+          }
+          pro(1000).then()
+
+    Q4. Create a promise function accepting an argument, if yes is passed to the function then it 
+        should go to resolved state and print Promise Resolved, and if nothing is passed then it 
+        should go to reject the state and catch the error and print Promise Rejected 
+
+    Ans. function fun(argu){
+            return new Promise((res,rej) => {
+                if(argu === 'Yes')
+                {
+                    res()
+                }
+                else
+                {
+                    rej()
+                }
+            })
+        }
+        fun('Yes').then(()=> {console.log("Promise is resolved");}).catch(() => {console.log("Promise is rejected");})    
+    
+    Q5. Create examples to explain callback hell function.
+
+    Ans. function call1(cb){
+        console.log("cb 1");
+        cb()
+        }
+        function call2(cb){
+            console.log("cb 2");
+            cb()
+        }
+        function call3(cb){
+               console.log("cb 3");
+               cb()
+        }
+        function call4(cb){
+            console.log("cb 4");
+               cb()
+        }
+        function call5(cb){
+               console.log("cb 5");
+               cb()
+           }
+           function call6(){
+            console.log("cb 6");
+           }
+    
+        call1(() => {
+               call2(() => {
+                   call3(() => {
+                       call4(() => {
+                           call5(call6)
+                       })
+                   })
+               })
+        })
+
+    Q6. Create examples to explain promises function.
+
+    Ans. const pro = new Promise((res,rej)=>{
+         let math=60
+         if(math>=55)
+         {
+             res()
+         }
+         else{
+             rej()
+         }
+        })
+        pro.then(() => {
+            console.log("Maths is passed");
+        })
+        .catch(() => {
+            console.log("You are fail");
+        })
+
+        OUTPUT : Maths is passed
+
+    
+    Q7. Create examples to explain async await function.
+
+    Ans. const pro = new Promise((res,rej)=>{
+          let math=60
+           if(math>=55)
+         {
+            res("Pass")
+        }
+        else{
+            rej("Fail")
+        }
+        })
+        async function fun()
+        {
+            var wait = await pro
+            console.log(wait);
+
+            console.log("successfully run");
+        }
+        fun()
+
+        OUTPUT: Pass 
+                successfully run
+        
+    Q8. Create examples to explain promise.all function.
+
+    Ans. const pro = new Promise((res,rej) => {
+         let name = "Anish"
+         if(name === "Anish")
+         {
+             res()
+         }
+         else{
+             rej()
+         }
+         })
+    
+         const pro1 = new Promise((res,rej) => {
+             let name = "Akanksha"
+             if(name === "Akanksha")
+             {
+                 res()
+             }
+             else{
+                 rej()
+             }
+         })
+    
+         Promise.all([pro,pro1]).then(() => {console.log('Resolved');}).catch(() => {console.log('error');})
+        
+    </pre>
+    <script src="./closure.js"></script>
+</body>
+</html>
+</body>
+</html>
